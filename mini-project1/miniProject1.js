@@ -1,42 +1,46 @@
-var input = document.getElementById("input");
+debugger;
+let input = document.getElementById("input");
 
 input.addEventListener("input", function() {
-  var text = input.value;
+  let text = input.value;
 
-  var letterCount = text.trim().split(/[qwertyuiopasdfghjklzxcvbnm]/).length - 1;
+  let letterCount = text.trim().split(/[qwertyuiopasdfghjklzxcvbnm]/).length - 1;
 
-  var wordCount = text.trim().split(/\s+/).length;
+  let wordCount = text.match(/\b\S+\b/g) ? text.match(/\b\S+\b/g).length : 0;
 
-  var sentenceCount = text.split(/[.!?]+/).length - 1;
+  let sentenceCount = text.match(/[^\s](\.|\?|\!)(?!\w)(?<!\.\.)(?<!\?\?)(?<!\!\!)/g) ? text.match(/[^\s](\.|\?|\!)(?!\w)(?<!\.\.)(?<!\?\?)(?<!\!\!)/g).length : 0;
 
-  var numbersCount = text.trim().split(/[1234567890]/).length - 1;
+  let numbersCount = text.trim().split(/[1234567890]/).length - 1;
 
   if(text.length === 0) {
     wordCount = 0;
   }
 
-  var result = document.getElementById("myResult");
+  let result = document.getElementById("myResult");
   result.innerHTML = "Количество букв: " + letterCount + "<br>" +
                      "Количество слов: " + wordCount + "<br>" +
                      "Количество предложений: " + sentenceCount + "<br>" + "количество цифр:" + numbersCount;
 });
 
 
+
+
+
 function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
   }
 
   function change() {
-    var body = document.querySelector("body");
+    let body = document.querySelector("body");
     body.style.backgroundColor = getRandomColor();
   }
 
-var button = document.getElementById("as");
+let button = document.getElementById("as");
 
 button.addEventListener("click", function() {
   change();
